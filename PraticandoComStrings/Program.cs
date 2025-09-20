@@ -4,9 +4,11 @@ using System.Text.RegularExpressions;
 
 
 //Exercicio da palavra chave
+Console.WriteLine("--------------------------------------");
+
 string palavraChave = "exemplo";
 Console.WriteLine("Digite um texto:");
-var textoDigitado = Console.ReadLine();
+var textoDigitado = Console.ReadLine() ?? string.Empty;
 
 if (textoDigitado is not null && textoDigitado.Contains(palavraChave, StringComparison.OrdinalIgnoreCase))
 {
@@ -29,6 +31,7 @@ Console.WriteLine($"A frase digitada possui {numeroTotalDeCaracteres} caracteres
 //--------------------------------------
 // EXERCICIO SUBISTITUICAO DE UMA PALAVRA
 //--------------------------------------
+Console.WriteLine("--------------------------------------");
 
 Console.Write("Digite uma frase: ");
 string frase = Console.ReadLine() ?? string.Empty;
@@ -36,13 +39,17 @@ Console.Write("\nDigite a palavra que deseja substituir: ");
 string palavraASerSubstituida = Console.ReadLine() ?? string.Empty;
 Console.Write("\nDigite a nova palavra:");
 string novaPalavra = Console.ReadLine() ?? string.Empty;
-string fraseModificada = frase.Replace(palavraASerSubstituida, novaPalavra, StringComparison.OrdinalIgnoreCase);
-Console.WriteLine($"\nFrase modificada: {fraseModificada}");
+if (!string.IsNullOrWhiteSpace(palavraASerSubstituida))
+{
+    string fraseModificada = frase.Replace(palavraASerSubstituida, novaPalavra, StringComparison.OrdinalIgnoreCase);
+    Console.WriteLine($"\nFrase modificada: {fraseModificada}");
+}
 
 
 //--------------------------------------
 // EXERCICIO DE REGEX
 //--------------------------------------
+Console.WriteLine("--------------------------------------");
 
 Console.Write("Digite uma chave PIX: ");
 string chavePix = Console.ReadLine() ?? string.Empty;
@@ -88,6 +95,7 @@ Console.WriteLine($"Tipo da chave PIX: {tipoChave}");
 //----------------------------------
 // EXERCICIO REGEX vlida numero
 //----------------------------------
+Console.WriteLine("--------------------------------------");
 
 Console.Write("Digite o número do cupom: ");
 string cupom = Console.ReadLine() ?? string.Empty;
@@ -97,6 +105,8 @@ Console.WriteLine(cupomValido ? "Cupom válido" : "Cupom inválido");
 //--------------------------------------
 // EXERCICIO REGEX - Valor monetário
 //--------------------------------------
+Console.WriteLine("--------------------------------------");
+
 Console.Write("Digite o texto do recibo: ");
 string textoDeEntrada = Console.ReadLine() ?? string.Empty;
 string padraoValorMonetario = @"R\$ \d+,\d{2}";
@@ -118,9 +128,31 @@ else
 //--------------------------------------
 // EXERCICIO REGEX - Valor monetário
 //--------------------------------------
+Console.WriteLine("--------------------------------------");
 
 string fraseDigitada = "Olá,    mundo!   Como   vocês    estão?";
 string regex = @"\s+";
 string textoLimpo = Regex.Replace(fraseDigitada, regex, " ").Trim();
 
 Console.WriteLine($"Texto limpo: \"{textoLimpo.Trim()}\"");
+
+
+//--------------------------------------
+// EXERCICIO REGEX - Validando Datas
+//--------------------------------------
+Console.WriteLine("--------------------------------------");
+
+string regexDeData = @"^\d{2}/\d{2}/\d{4}$";
+
+Console.Write("Digite uma data (dd/mm/aaaa): ");
+string dataDigitada = Console.ReadLine() ?? string.Empty;
+bool dataValida = Regex.IsMatch(dataDigitada, regexDeData);
+if (dataValida)
+{
+    Console.WriteLine("Data válida.");
+}
+else
+{
+    Console.WriteLine("Data inválida. Por favor, use o formato dd/mm/aaaa.");
+}
+
