@@ -156,3 +156,18 @@ else
     Console.WriteLine("Data inválida. Por favor, use o formato dd/mm/aaaa.");
 }
 
+//--------------------------------------
+// EXERCICIO REGEX - Validando Datas
+//--------------------------------------
+Console.WriteLine("--------------------------------------");
+
+Console.WriteLine("Digite o texto: ");
+string textoLink = "Acesse https://meusite.com ou http://exemplo.org para mais informações.";// = Console.ReadLine();
+
+string regexParaLink = @"https?://\S+";
+
+string resultado = Regex.Replace(textoLink, regexParaLink, "[LINK]");
+
+Console.WriteLine(resultado);
+
+
